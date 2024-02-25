@@ -6,11 +6,11 @@ export default function Home() {
   return (
     <>
       <div
-        className="bg-center w-screen h-screen pt-20"
+        className="bg-center w-screen h-screen pt-20 bg-cover"
         style={{ backgroundImage: `url(${backgroundimage})` }}
       >
         <Navbar />
-        <Slidebar isOpen={false} />
+        <Slidebar />
       </div>
     </>
   );
