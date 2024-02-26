@@ -1,8 +1,9 @@
 import backgroundimage from "../assets/background.png";
 import Navbar from "../components/navbar";
+import UserInputFiled from "../components/userInputFiled";
 import Slidebar from "../components/slidebar";
 
-export default function Home() {
+export default function Authenticatoin() {
   return (
     <>
       <div
@@ -10,7 +11,7 @@ export default function Home() {
         style={{ backgroundImage: `url(${backgroundimage})` }}
       >
         {/* <Navbar /> */}
-        <Slidebar />
+        <UserInputFiled />
       </div>
     </>
   );
