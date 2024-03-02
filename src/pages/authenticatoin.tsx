@@ -1,9 +1,10 @@
 import backgroundimage from "../assets/background.png";
-import Navbar from "../components/navbar";
 import UserInputFiled from "../components/userInputFiled";
-import Slidebar from "../components/slidebar";
+import { useAuth } from "../auth/useAuth";
 
 export default function Authenticatoin() {
+  const { user, signIn, signOut } = useAuth();
+
   return (
     <>
       <div

@@ -21,8 +21,8 @@ function Navbar() {
         <a href="/home">Home</a>
         <a href="/About">About</a>
         <a href="/Contact">Contact</a>
-        {/* <a href="/Authenticatoin">Login</a> */}
-        <button onClick={handleClick}>{!user ? "Login" : "Log out"}</button>
+        <a href="/Authenticatoin">Login</a>
+        {/* <button onClick={handleClick}>{!user ? "Login" : "Log out"}</button> */}
       </div>
     </nav>
   );
