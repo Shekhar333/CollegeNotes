@@ -35,7 +35,7 @@ export const AuthProvider = ({
     }
     setAuthContext({
       ...authContext,
-      loading: false,
+      loading: true,
     });
   }, []);
 

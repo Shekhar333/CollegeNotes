@@ -1,11 +1,16 @@
 import React from "react";
 import Navbar from "../components/navbar";
+import { useNavigate } from "react-router-dom";
 import backgroundimage from "../assets/background.png";
 import { useAuth } from "../auth/useAuth";
 import stripImage from "../assets/image5.png";
 
 const GetStarted = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
+  const handelURL = () => {
+    navigate("/Home");
+  };
   return (
     <>
       <div
@@ -36,7 +41,10 @@ const GetStarted = () => {
           </div>
         </div>
         {/* <div className=""> */}
-        <button className="bg-[#405681] hover:bg-[#405682] text-white font-semibold hover:text-white py-2 px-4 border border-black  rounded z-10">
+        <button
+          onClick={handelURL}
+          className="bg-[#405681] hover:bg-[#405682] text-white font-semibold hover:text-white py-2 px-4 border border-black  rounded z-10"
+        >
           Get Stated
         </button>
         {/* </div> */}
