@@ -14,6 +14,7 @@ import (
 
 type Service interface {
 	Health() map[string]string
+	Signup(string) error
 }
 
 type service struct {
@@ -23,7 +24,7 @@ type service struct {
 var (
 	dbname   = os.Getenv("DB_DATABASE")
 	password = os.Getenv("DB_PASSWORD")
-	username = os.Getenv("DB_USERNAME")
+	username = os.Getenv("DB_USER")
 	port     = os.Getenv("DB_PORT")
 	host     = os.Getenv("DB_HOST")
 )
