@@ -2,32 +2,24 @@ package database
 
 import "fmt"
 
-func (s *service) Signup(query string) error {
+func (s *service) Signup(name string, username string, password string) error {
 
-	//creating the database here
-	// _, err := s.db.Exec("CREATE DATABASE IF NOT EXISTS users")
-
-	// if err != nil {
-	// 	return err
-	// }
-
-	//creating the table here
-	_, err := s.db.Exec("CREATE TABLE IF NOT EXISTS gopgdatabase (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, username VARCHAR(255) NOT NULL UNIQUE, password VARCHAR(255) NOT NULL)")
-
-	if err != nil {
-		return err
-	}
-	// _, err := s.db.Exec("INSERT INTO users (name, username, password) VALUES ($1, $2, $3)", name, username, password)
+	// _, err = s.db.Exec("INSERT INTO users (name, username, password) VALUES ($1, $2, $3)", name, username, password)
 	// quering the user information into the database
-	_, err = s.db.Exec(query)
 
+	stmt, err := s.db.Prepare("INSERT INTO gopgdatabase (name, username, password) VALUES (?, ?, ?)")
 	if err != nil {
+		// Return the error if preparation fails
+		return err
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(name, username, password)
+	if err != nil {
+		// Return the error if execution fails
 		return err
 	}
 
-	if err != nil {
-		return err
-	}
 	fmt.Println("success")
 	return nil
 }

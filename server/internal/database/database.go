@@ -14,7 +14,7 @@ import (
 
 type Service interface {
 	Health() map[string]string
-	Signup(string) error
+	Signup(string, string, string) error
 }
 
 type service struct {

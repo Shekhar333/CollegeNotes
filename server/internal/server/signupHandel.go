@@ -16,13 +16,16 @@ import (
 
 func (s *Server) SignUpHandel(c echo.Context) error {
 
+	fmt.Println("correct")
 	var user User
-	if err := c.Bind(&user); err != nil {
+	err := c.Bind(&user)
+	fmt.Println(user.Name)
+	if err != nil {
+		// fmt.Println(err)
 		return err // Or return an HTTP error with more context
 	}
 
 	fmt.Println("correct")
-
 	password, err := hashPassword(user.Password)
 	name := user.Name
 	username := user.Username
@@ -31,8 +34,7 @@ func (s *Server) SignUpHandel(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "failed to hash password"})
 	}
 
-	err = s.db.Signup(fmt.Sprint("INSERT INTO users (name, username, password) VALUES ($1, $2, $3)", name, username, password))
-	_ = s.db.Health()
+	err = s.db.Signup(name, username, password)
 
 	if err != nil {
 		fmt.Println(err)

@@ -3,7 +3,9 @@ package server
 import (
 	// "database/sql"
 	// "fmt"
+	"fmt"
 	"net/http"
+
 	// "os"
 
 	// "time"
@@ -17,26 +19,17 @@ import (
 )
 
 func (s *Server) LoginHandel(c echo.Context) error {
-	// w.Header().Set("Content-Type", "application/json")
-	// var u User
-	// json.NewDecoder(r.Body).Decode(&u)
+	var user User
+	err := c.Bind(&user)
+	fmt.Println(user.Name)
+	if err != nil {
+		return err // Or return an HTTP error with more context
+	}
 
-	// // here i have to implement database to check the data provided by user for authentication
-	// if u.username == "check" && u.password == "check" {
-	// 	tokenString, err := CreateToken(u.username)
-	// 	if err != nil {
-	// 		w.WriteHeader(http.StatusInternalServerError)
-	// 	}
-	// 	w.WriteHeader(http.StatusOK)
-	// 	fmt.Fprint(w, tokenString)
-	// 	return
-	// } else {
-	// 	w.WriteHeader(http.StatusUnauthorized)
-	// 	fmt.Fprint(w, "Invalid Credentials")
-	// }
+	name := user.Name
+	password := user.Password
 
-	// var user User
-
+	password, err := hashPassword(user.Password)
 	resp := map[string]string{
 		"message": "Succussfully LoggedIn",
 		"status":  "OK",
